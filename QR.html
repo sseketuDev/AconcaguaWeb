@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aconcagua Webs - WhatsApp</title>
+    <link rel="icon" href="Aconcagua.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-alt: #334155;
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: radial-gradient(circle at top, rgba(59,130,246,0.15), transparent 35%), var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(19,28,43,0.98));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        .hero {
+            display: grid;
+            gap: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .brand img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 12px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.8vw, 3rem);
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.25rem;
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(96, 165, 250, 0.12);
+            border-radius: 18px;
+            padding: 1.4rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .card h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.95rem 1rem;
+            background: rgba(59,130,246,0.12);
+            color: var(--text);
+            border-radius: 14px;
+            border: 1px solid rgba(59,130,246,0.18);
+            font-weight: 600;
+        }
+
+        .phone i {
+            color: var(--accent);
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .qr-block {
+            display: grid;
+            gap: 1rem;
+            justify-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 18px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .qr-block h2 {
+            margin: 0;
+            color: white;
+        }
+
+        .qr-block p {
+            margin: 0;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.7;
+        }
+
+        .qr-block img {
+            width: min(280px, 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: #128c7e;
+            border-radius: 999px;
+            padding: 0.9rem 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .whatsapp-link:hover {
+            transform: translateY(-2px);
+            background: #f8fafc;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            padding: 0.95rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero {
+                padding: 2.5rem;
+            }
+
+            .button-row {
+                padding-bottom: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div class="brand">
+                <img src="Aconcagua.png" alt="Aconcagua Webs logo">
+                <div>
+                    <p style="margin:0; color: var(--accent); font-weight:700; letter-spacing:0.08em; text-transform: uppercase;">Aconcagua Webs</p>
+                    <h1>Contacto WhatsApp</h1>
+                </div>
+            </div>
+            <p>Habla con nuestro equipo para recibir ayuda en diseño web, redes sociales y publicidad digital. Escanea el código QR o usa cualquiera de los números de contacto.</p>
+        </section>
+
+        <div class="grid">
+            <article class="card">
+                <h2>Victoria Tapia</h2>
+                <p>Diseñadora y Comunity Manager</p>
+                <div class="phone">
+                    <i class="fas fa-phone"></i>
+                    +56 9 9591 2125
+                </div>
+            </article>
+            <article class="card">
+                <h2>Vicente Nieto</h2>
+                <p>Programador</p>
+                <div class="phone">
+                    <i class="fas fa-phone"></i>
+                    +56 9 7397 9934
+                </div>
+            </article>
+            <article class="card qr-block" style="grid-column: span 2;">
+                <h2>Escanea para hablar por WhatsApp</h2>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://wa.me/5695912125" alt="QR WhatsApp Aconcagua Webs" loading="lazy">
+                <p>Escanea este código o toca el botón para abrir el chat directo con Victoria Tapia en WhatsApp.</p>
+                <a class="whatsapp-link" href="https://wa.me/5695912125" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i> Chat WhatsApp +56 9 9591 2125
+                </a>
+            </article>
+        </div>
+
+        <div class="button-row">
+            <a href="index.html" class="btn"><i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i>Volver al inicio</a>
+        </div>
+    </main>
+</body>
+</html>

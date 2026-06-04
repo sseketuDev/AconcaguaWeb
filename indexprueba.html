@@ -173,48 +173,6 @@
             display: block;
             object-fit: cover;
         }
-
-        .aeo-card {
-            background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(15,23,42,0.95));
-            border: 1px solid rgba(59,130,246,0.3);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
-        }
-
-        .aeo-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .aeo-card p {
-            margin-bottom: 1rem;
-            color: var(--texto-suave);
-            line-height: 1.8;
-        }
-
-        .aeo-card ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: grid;
-            gap: 0.9rem;
-        }
-
-        .aeo-card li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.9rem;
-            color: var(--texto-claro);
-        }
-
-        .aeo-card li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            color: var(--acento);
-            margin-top: 0.3rem;
-        }
         
         .whatsapp-float {
             position: fixed;
@@ -283,8 +241,9 @@
             <nav class="hidden md:flex space-x-8">
                 <a href="#inicio" class="nav-link">Inicio</a>
                 <a href="#beneficios" class="nav-link">Beneficios</a>
-                <a href="#clientes" class="nav-link">Clientes</a>
+                <a href="#encontrarte" class="nav-link">Cómo te encuentran</a>
                 <a href="#proyectos" class="nav-link">Proyectos</a>
+                <a href="#inversion" class="nav-link">Inversión</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
             </nav>
             
@@ -300,8 +259,9 @@
         <div id="mobile-menu" class="mobile-menu md:hidden flex-col bg-azul-intermedio px-4 pb-4 pt-2">
             <a href="#inicio" class="py-2">Inicio</a>
             <a href="#beneficios" class="py-2">Beneficios</a>
-            <a href="#clientes" class="py-2">Clientes</a>
+            <a href="#encontrarte" class="py-2">Cómo te encuentran</a>
             <a href="#proyectos" class="py-2">Proyectos</a>
+            <a href="#inversion" class="py-2">Inversión</a>
             <a href="#contacto" class="py-2">Contacto</a>
         </div>
     </header>
@@ -346,8 +306,8 @@
     <!-- Benefits Section -->
     <section id="beneficios" class="py-16 bg-azul-medio">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4">¿Por qué necesitas una <span class="text-acento">página web</span>?</h2>
-            <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">En un mundo conectado, tu presencia online es tu carta de presentación las 24 horas del día, los 7 días de la semana.</p>
+            <h2 class="text-3xl font-bold text-center mb-4">¿Por qué tu emprendimiento necesita una <span class="text-acento">página web</span>?</h2>
+            <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">Piense en su página web como su local siempre abierto: aunque usted esté descansando, ahí está su negocio, listo para que un nuevo cliente lo conozca, le tenga confianza y lo contacte. Es el paso que ayuda a un emprendimiento a dar el siguiente salto.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Benefit 1 -->
@@ -355,8 +315,8 @@
                     <div class="benefit-icon">
                         <i class="fas fa-globe-americas text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Presencia 24/7</h3>
-                    <p class="text-texto-suave">Tu negocio está siempre disponible, incluso fuera del horario de atención. Los clientes pueden conocerte y contactarte en cualquier momento.</p>
+                    <h3 class="text-xl font-semibold mb-3">Siempre disponible</h3>
+                    <p class="text-texto-suave">Su negocio no cierra. Aunque sea de noche o fin de semana, sus clientes pueden conocerlo y escribirle cuando lo necesiten.</p>
                 </div>
                 
                 <!-- Benefit 2 -->
@@ -364,8 +324,8 @@
                     <div class="benefit-icon">
                         <i class="fas fa-mobile-alt text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Adaptable a celulares</h3>
-                    <p class="text-texto-suave">Más del 70% de las búsquedas se hacen desde celulares. Tu web se verá perfecta en cualquier dispositivo.</p>
+                    <h3 class="text-xl font-semibold mb-3">Pensada para el celular</h3>
+                    <p class="text-texto-suave">Hoy casi todos buscan desde el teléfono. Su página se verá bien y será fácil de usar en cualquier dispositivo.</p>
                 </div>
                 
                 <!-- Benefit 3 -->
@@ -373,8 +333,8 @@
                     <div class="benefit-icon">
                         <i class="fas fa-chart-line text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Más clientes</h3>
-                    <p class="text-texto-suave">Atraes nuevos clientes que te buscan en Google. Una web profesional genera confianza y credibilidad.</p>
+                    <h3 class="text-xl font-semibold mb-3">Más clientes nuevos</h3>
+                    <p class="text-texto-suave">Personas que aún no lo conocen pueden encontrarlo y dar el primer paso. Una web cuidada genera confianza desde el inicio.</p>
                 </div>
                 
                 <!-- Benefit 4 -->
@@ -382,8 +342,8 @@
                     <div class="benefit-icon">
                         <i class="fas fa-robot text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Preparada para el futuro</h3>
-                    <p class="text-texto-suave">Conozco AEO (Optimización para Motores de Respuesta), la nueva forma de aparecer en búsquedas con inteligencia artificial como ChatGPT y Google AI.</p>
+                    <h3 class="text-xl font-semibold mb-3">Lista para el futuro</h3>
+                    <p class="text-texto-suave">Cada vez más personas buscan preguntándole a la inteligencia artificial. Su negocio puede estar preparado para aparecer también ahí.</p>
                 </div>
                 
                 <!-- Benefit 5 -->
@@ -391,8 +351,8 @@
                     <div class="benefit-icon">
                         <i class="fas fa-bullhorn text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Mejor imagen</h3>
-                    <p class="text-texto-suave">Destaca sobre tu competencia con un diseño moderno y profesional que transmite confianza a tus clientes.</p>
+                    <h3 class="text-xl font-semibold mb-3">Una mejor imagen</h3>
+                    <p class="text-texto-suave">Un diseño ordenado y profesional ayuda a que su emprendimiento se vea sólido y a la altura de negocios más grandes.</p>
                 </div>
                 
                 <!-- Benefit 6 -->
@@ -400,26 +360,46 @@
                     <div class="benefit-icon">
                         <i class="fas fa-wallet text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Costo efectivo</h3>
-                    <p class="text-texto-suave">Una inversión única que trabaja por ti todos los días, mucho más económica que la publicidad tradicional.</p>
+                    <h3 class="text-xl font-semibold mb-3">Una inversión sensata</h3>
+                    <p class="text-texto-suave">Es una inversión que trabaja por usted cada día, y suele rendir más que muchas formas de publicidad tradicional.</p>
                 </div>
             </div>
             
-            <!-- AEO Explanation -->
-            <div class="mt-16 aeo-card">
-                <h3 class="text-2xl font-bold mb-4">AEO: Optimización para motores de respuesta</h3>
-                <p>AEO (Answer Engine Optimization) ayuda a que tu negocio aparezca dentro de respuestas de inteligencia artificial, asistentes conversacionales y resultados enriquecidos.</p>
-                <ul>
-                    <li>Posicionamos tu sitio para respuestas en ChatGPT, Google AI y Perplexity.</li>
-                    <li>Preparamos tu contenido para preguntas directas y búsqueda por voz.</li>
-                    <li>Mejoramos la visibilidad en asistentes que entregan recomendaciones instantáneas.</li>
-                </ul>
-                <p>Así no solo compites en Google, sino también en los nuevos espacios donde tus clientes están buscando hoy.</p>
-            </div>
         </div>
     </section>
 
-    
+    <!-- Cómo te encuentran: SEO + AEO -->
+    <section id="encontrarte" class="py-16 bg-azul-oscuro">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Tener una web es el primer paso. <span class="text-acento">¿Y que lo encuentren?</span></h2>
+            <p class="text-texto-suave text-center max-w-3xl mx-auto mb-12">Permítame una comparación sencilla: de poco sirve tener la mejor tienda si está en un pasaje sin letrero. Que las personas lo encuentren cuando lo buscan es tan importante como la página misma. De eso se encargan dos cosas: el SEO y el AEO.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- SEO -->
+                <div class="card rounded-2xl p-8">
+                    <div class="benefit-icon mx-0 mb-5">
+                        <i class="fas fa-magnifying-glass text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">SEO</h3>
+                    <p class="text-acento font-semibold mb-3">Que lo encuentren en Google</p>
+                    <p class="text-texto-suave">Es el trabajo que ayuda a que su negocio aparezca cuando alguien busca en Google lo que usted ofrece. Sería el letrero que guía a los clientes hasta su puerta.</p>
+                </div>
+
+                <!-- AEO -->
+                <div class="card rounded-2xl p-8 border border-acento">
+                    <div class="benefit-icon mx-0 mb-5">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">AEO</h3>
+                    <p class="text-acento font-semibold mb-3">Que lo encuentren en la inteligencia artificial</p>
+                    <p class="text-texto-suave">Cada vez más personas, en lugar de buscar en Google, le preguntan directamente a asistentes como ChatGPT o Google AI: "¿dónde hay un buen lugar para esto cerca de mí?". El AEO ayuda a que su negocio sea una de las respuestas que recomiendan.</p>
+                </div>
+            </div>
+
+            <p class="text-texto-suave text-center max-w-3xl mx-auto mt-10">Es una forma de búsqueda que recién está creciendo. Trabajarla hoy es una manera honesta de adelantarse, y un detalle que muchos negocios todavía no consideran.</p>
+        </div>
+    </section>
+
     <!-- Clients Section -->
     
 
@@ -530,33 +510,136 @@
         </div>
     </div>
 </section>
-<!-- Maintenance Section -->
-    <section id="mantencion" class="py-16 bg-azul-oscuro">
+
+    <!-- Inversión / Mantención Section -->
+    <section id="inversion" class="py-16 bg-azul-oscuro">
         <div class="container mx-auto px-4">
-            <div class="card rounded-3xl p-8">
-                <div class="mb-6">
-                    <h2 class="text-3xl font-bold text-center">Mantención mensual</h2>
-                    <p class="text-texto-suave text-center max-w-2xl mx-auto mt-4">Cada página incluye una mantención mensual: la inversión que mantiene tu sitio activo y actualizado. Esta inversión parte desde los $15.000 CLP al mes, con derecho a las mantenciones básicas.</p>
+            <h2 class="text-3xl font-bold text-center mb-4">Su <span class="text-acento">inversión</span>, explicada con claridad</h2>
+            <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">Creemos en ser transparentes. Una página web es una inversión que trabaja por usted cada día, y se compone de dos partes: la creación de su sitio y una mantención mensual que lo mantiene funcionando. Aquí le explicamos ambas con sinceridad.</p>
+
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                <!-- Tarjeta: Creación de la página -->
+                <div class="card rounded-2xl p-8 flex flex-col">
+                    <p class="text-acento uppercase tracking-wide text-sm font-semibold mb-3">Inversión inicial · Creación de tu página</p>
+                    <p class="text-texto-suave mb-2">Cada proyecto es una inversión distinta, por eso tu página se cotiza según lo que necesitas. La inversión parte desde los <span class="text-texto-claro font-semibold">$80.000 CLP</span> y se ajusta según el alcance, las secciones y las funciones que quieras incluir.</p>
+                    <p class="text-texto-suave mb-6">Conversemos y armamos juntos la inversión exacta para tu negocio.</p>
+                    <div class="mt-auto">
+                        <a href="https://wa.me/56973979934" target="_blank" class="btn-acento inline-flex items-center px-6 py-3 rounded-lg font-semibold w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Cotiza tu inversión
+                        </a>
+                    </div>
                 </div>
-                <div class="grid gap-6 md:grid-cols-2">
+
+                <!-- Tarjeta: Mantención mensual -->
+                <div class="card rounded-2xl p-8 flex flex-col border border-acento">
+                    <p class="text-acento uppercase tracking-wide text-sm font-semibold mb-3">Inversión mensual · Mantención</p>
+                    <p class="text-texto-suave mb-2">Cada página incluye una mantención mensual: la inversión que mantiene tu sitio activo y actualizado. Esta inversión parte desde los <span class="text-texto-claro font-semibold">$15.000 CLP al mes</span>, con derecho a las mantenciones básicas.</p>
+                    <p class="text-texto-suave mb-6">Si buscas más servicios, la inversión mensual aumenta a tu medida (a cotizar).</p>
+                    <div class="mt-auto">
+                        <a href="https://wa.me/56973979934" target="_blank" class="btn-acento inline-flex items-center px-6 py-3 rounded-lg font-semibold w-full justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Consulta por la mantención
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ¿Por qué una mantención mensual? -->
+            <div class="max-w-5xl mx-auto card rounded-2xl p-8 md:p-10 mb-8 border border-acento">
+                <div class="flex flex-col md:flex-row md:items-center">
+                    <div class="benefit-icon mb-4 md:mb-0 md:mr-6 md:mx-0 flex-shrink-0">
+                        <i class="fas fa-screwdriver-wrench text-white text-2xl"></i>
+                    </div>
                     <div>
-                        <p class="text-texto-claro text-lg font-semibold mb-4">Si buscas más servicios, la inversión mensual aumenta a tu medida (a cotizar).</p>
-                        <p class="text-texto-suave">¿Buscas algo más que lo básico? Tu inversión mensual crece según los servicios que sumes a la mantención. Cada inversión se cotiza a tu medida para que pagues solo por lo que tu negocio realmente necesita.</p>
+                        <h3 class="text-2xl font-bold mb-2">¿Por qué una mantención mensual?</h3>
+                        <p class="text-texto-suave">Una página web se parece a un automóvil: comprarlo es solo el comienzo, porque necesita mantención para seguir andando bien. La mantención mantiene su sitio en línea, sus datos al día y todo funcionando. Es una inversión pequeña que cuida la inversión grande que ya hizo en su página.</p>
                     </div>
-                    <div class="bg-gradient-to-br from-azul-medio to-azul-intermedio rounded-3xl p-6 border border-acento">
-                        <h3 class="text-2xl font-bold mb-4">Qué incluye la mantención básica</h3>
-                        <ul class="space-y-4 text-texto-suave">
-                            <li><span class="font-semibold">•</span> Actualización de fotografías ya existentes (reemplazo de imágenes, no incorporación de fotos nuevas)</li>
-                            <li><span class="font-semibold">•</span> Actualización de otros servicios ya presentes en tu sitio</li>
-                            <li><span class="font-semibold">•</span> Pago del servidor donde vive tu página, incluido en la inversión</li>
-                            <li><span class="font-semibold">•</span> Reunión mensual para coordinar los cambios que necesites</li>
-                        </ul>
+                </div>
+            </div>
+
+            <!-- Qué incluye la mantención básica -->
+            <div class="max-w-5xl mx-auto card rounded-2xl p-8 md:p-10 mb-8">
+                <h3 class="text-xl font-bold mb-5 text-center">¿Qué incluye la mantención básica?</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-camera text-xs"></i>
+                        </div>
+                        <span>Actualización de fotografías ya existentes (reemplazo de imágenes, no incorporación de fotos nuevas)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-sync-alt text-xs"></i>
+                        </div>
+                        <span>Actualización de otros servicios ya presentes en tu sitio</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-server text-xs"></i>
+                        </div>
+                        <span>Pago del servidor donde vive tu página, incluido en la inversión</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-handshake text-xs"></i>
+                        </div>
+                        <span>Reunión mensual para coordinar los cambios que necesites</span>
+                    </li>
+                </ul>
+
+                <!-- Nota sobre servicios adicionales -->
+                <div class="bg-azul-intermedio rounded-lg p-5 flex items-start mt-6">
+                    <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                        <i class="fas fa-info text-xs"></i>
                     </div>
+                    <p class="text-texto-suave text-sm">¿Buscas algo más que lo básico? Tu inversión mensual crece según los servicios que sumes a la mantención. Cada inversión se cotiza a tu medida para que pagues solo por lo que tu negocio realmente necesita.</p>
+                </div>
+            </div>
+
+            <!-- Redes sociales y creación de contenido -->
+            <div class="max-w-5xl mx-auto card rounded-2xl p-8 md:p-10 border border-acento">
+                <div class="flex flex-col md:flex-row md:items-center mb-6">
+                    <div class="benefit-icon mb-4 md:mb-0 md:mr-6 md:mx-0">
+                        <i class="fas fa-share-nodes text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Redes sociales y creación de contenido</h3>
+                        <p class="text-texto-suave mt-1">Un servicio adicional para potenciar tu presencia más allá de la web. Inversión a cotizar según el plan que elijas.</p>
+                    </div>
+                </div>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-hashtag text-xs"></i>
+                        </div>
+                        <span>Mantención de tus redes sociales: publicaciones y gestión constante de tu perfil</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-clapperboard text-xs"></i>
+                        </div>
+                        <span>Creación de contenido pensado para atraer y conectar con tus clientes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-camera-retro text-xs"></i>
+                        </div>
+                        <span>Producción con implementos profesionales: cámara Canon profesional</span>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
+                            <i class="fas fa-lightbulb text-xs"></i>
+                        </div>
+                        <span>Iluminación de estudio con aros de luz para un resultado de calidad</span>
+                    </li>
+                </ul>
+                <div class="text-center mt-8">
+                    <a href="https://wa.me/56973979934" target="_blank" class="btn-acento inline-flex items-center px-6 py-3 rounded-lg font-semibold">
+                        <i class="fab fa-whatsapp mr-2"></i> Cotiza tu plan de contenido
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- Contact Section -->
     <section id="contacto" class="py-16 bg-azul-intermedio">
