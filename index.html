@@ -5,686 +5,1095 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aconcagua Webs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-   <link rel="icon" href="Aconcagua.png" type="image/png">
+    <link rel="icon" href="Aconcagua.png" type="image/png">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            --azul-oscuro: #0f172a;
-            --azul-medio: #1e293b;
-            --azul-intermedio: #334155;
-            --azul-claro: #475569;
-            --acento: #3b82f6;
-            --acento-hover: #2563eb;
-            --texto-claro: #f1f5f9;
-            --texto-suave: #cbd5e1;
+            --bg:           #0c0c0f;
+            --bg-card:      #111116;
+            --border:       rgba(255,255,255,0.07);
+            --border-blue:  rgba(59,130,246,0.35);
+            --accent:       #3b82f6;
+            --accent-dim:   rgba(59,130,246,0.12);
+            --text:         #f0f0f3;
+            --text-muted:   #6b7280;
+            --text-secondary: #9ca3af;
         }
-        
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--azul-oscuro);
-            color: var(--texto-claro);
-            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
         }
-        
-        .bg-azul-oscuro {
-            background-color: var(--azul-oscuro);
+
+        /* ── NAV ────────────────────────────────── */
+        header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 100;
+            background: rgba(12,12,15,0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
         }
-        
-        .bg-azul-medio {
-            background-color: var(--azul-medio);
-        }
-        
-        .bg-azul-intermedio {
-            background-color: var(--azul-intermedio);
-        }
-        
-        .text-acento {
-            color: var(--acento);
-        }
-        
-        .border-acento {
-            border-color: var(--acento);
-        }
-        
-        .btn-acento {
-            background-color: var(--acento);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-acento:hover {
-            background-color: var(--acento-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
-        }
-        
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: linear-gradient(145deg, var(--azul-medio), var(--azul-intermedio));
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--acento);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .benefit-icon {
-            background: linear-gradient(135deg, var(--acento), var(--azul-oscuro));
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 58px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
+            justify-content: space-between;
         }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            color: var(--text);
         }
-        
-        .client-logo {
-            width: 120px;
-            height: 120px;
+
+        .nav-logo img {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            border: 3px solid var(--acento);
-            object-fit: cover;
-            background-color: white;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .client-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
 
-        .logo-container {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
 
-.logo-img {
-    max-width: 200%;
-    max-height: 100%;
-    object-fit: contain;
-}
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
 
-        /* Galería responsive de proyectos */
-        .project-gallery {
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            background: var(--accent) !important;
+            color: #fff !important;
+            padding: 0.4rem 1.1rem;
+            border-radius: 7px;
+            font-size: 0.85rem !important;
+            font-weight: 600;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover { opacity: 0.88; }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0.4rem;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav.open { display: flex; }
+
+        .mobile-nav a {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-nav a:last-child { border-bottom: none; }
+
+        /* ── SECTIONS ────────────────────────────── */
+        section { padding: 4.5rem 1.5rem; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.75rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.1rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .accent { color: var(--accent); }
+
+        /* ── HERO ────────────────────────────────── */
+        #inicio {
+            padding-top: 7.5rem;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid rgba(59,130,246,0.22);
+            border-radius: 999px;
+            padding: 0.28rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+        }
+
+        #inicio h1 {
+            font-size: clamp(2rem, 5.5vw, 3.4rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.12;
+            margin-bottom: 1.1rem;
+        }
+
+        #inicio > .container > p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 0.85rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border: 1px solid var(--border-blue);
+            color: var(--accent);
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .btn-outline:hover { background: var(--accent-dim); }
+
+        /* ── PROJECT CARDS ───────────────────────── */
+        #proyectos { padding-top: 2rem; }
+
+        .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         @media (min-width: 768px) {
-            .project-gallery {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1100px) {
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
         .project-card {
-            background: linear-gradient(145deg, var(--azul-medio), var(--azul-intermedio));
-            border-radius: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.25s, transform 0.25s;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border-color: var(--border-blue);
+            transform: translateY(-3px);
         }
 
-        .project-image {
-            width: 100%;
-            overflow: hidden;
-        }
+        /* Image area */
+        .card-image-area { position: relative; }
 
-        .project-image picture,
-        .project-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .aeo-card {
-            background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(15,23,42,0.95));
-            border: 1px solid rgba(59,130,246,0.3);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.18);
-        }
-
-        .aeo-card h3 {
-            margin-bottom: 1rem;
-        }
-
-        .aeo-card p {
-            margin-bottom: 1rem;
-            color: var(--texto-suave);
-            line-height: 1.8;
-        }
-
-        .aeo-card ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: grid;
-            gap: 0.9rem;
-        }
-
-        .aeo-card li {
+        .image-toggle {
+            position: absolute;
+            top: 0.65rem;
+            right: 0.65rem;
             display: flex;
-            align-items: flex-start;
-            gap: 0.9rem;
-            color: var(--texto-claro);
+            background: rgba(0,0,0,0.72);
+            backdrop-filter: blur(8px);
+            border-radius: 6px;
+            overflow: hidden;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .aeo-card li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            color: var(--acento);
-            margin-top: 0.3rem;
+        .toggle-btn {
+            padding: 0.28rem 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.18s;
+            letter-spacing: 0.03em;
         }
-        
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
-            z-index: 100;
+
+        .toggle-btn.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Views */
+        .view-desktop,
+        .view-mobile { display: none; width: 100%; }
+
+        .view-desktop.show { display: block; }
+        .view-mobile.show  { display: flex; }
+
+        .view-desktop img {
+            width: 100%;
+            height: 195px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .view-mobile {
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0e;
+            padding: 1.25rem;
+            min-height: 195px;
+        }
+
+        .view-mobile img {
+            max-height: 185px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+        }
+
+        /* Placeholder for images not yet added */
+        .img-placeholder {
+            width: 100%;
+            height: 195px;
+            background: #0f0f14;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
+
+        .img-placeholder i { font-size: 1.6rem; opacity: 0.3; }
+
+        .img-placeholder span {
+            background: rgba(255,255,255,0.05);
+            border: 1px dashed rgba(255,255,255,0.12);
+            padding: 0.3rem 0.75rem;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.72rem;
+        }
+
+        /* Card body */
+        .card-info { padding: 1.1rem 1.3rem 1.3rem; }
+
+        .card-info h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .card-info p {
+            color: var(--text-secondary);
+            font-size: 0.83rem;
+            line-height: 1.5;
+            margin-bottom: 0.9rem;
+        }
+
+        .card-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.18s;
+        }
+
+        .card-link:hover { gap: 0.5rem; }
+
+        /* ── SEO / AEO ───────────────────────────── */
+        #seo { border-top: 1px solid var(--border); }
+
+        .seo-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 768px) {
+            .seo-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .seo-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+
+        .seo-card-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            color: var(--accent);
+            margin-bottom: 1.1rem;
         }
-        
-        .whatsapp-float:hover {
-            background-color: #128C7E;
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(18, 140, 126, 0.7);
+
+        .seo-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.65rem;
         }
-        
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 10px); }
-            100% { transform: translate(0, -0px); }
+
+        .seo-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.65;
+            margin-bottom: 1rem;
         }
-        
-        @media (max-width: 768px) {
-            .mobile-menu {
-                display: none;
-            }
-            
-            .mobile-menu.active {
-                display: flex;
-            }
-            
-            .client-logo {
-                width: 100px;
-                height: 100px;
-            }
+
+        .seo-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .seo-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.855rem;
+            color: var(--text-secondary);
+        }
+
+        .seo-card li::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 0.5em;
+            flex-shrink: 0;
+        }
+
+        /* ── BENEFITS ────────────────────────────── */
+        #beneficios { border-top: 1px solid var(--border); }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 600px) {
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .benefits-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.3rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: border-color 0.2s;
+        }
+
+        .benefit-card:hover { border-color: var(--border-blue); }
+
+        .benefit-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--accent-dim);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .benefit-card p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── CONTACT ─────────────────────────────── */
+        #contacto { border-top: 1px solid var(--border); background: var(--bg-card); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .contact-col h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.75rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.9rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            margin-bottom: 0.65rem;
+            transition: border-color 0.2s;
+        }
+
+        .contact-method:hover { border-color: var(--border-blue); }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-dim);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .cm-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 0.05rem;
+        }
+
+        .cm-value {
+            font-size: 0.87rem;
+            font-weight: 500;
+        }
+
+        .cm-action {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+        }
+
+        .why-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 0.5em;
+            flex-shrink: 0;
+        }
+
+        .why-item span {
+            font-size: 0.855rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── FOOTER ──────────────────────────────── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .footer-socials a {
+            width: 34px;
+            height: 34px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent);
+            border-color: var(--border-blue);
+        }
+
+        footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* ── WHATSAPP FLOAT ──────────────────────── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.4rem;
+            right: 1.4rem;
+            width: 50px;
+            height: 50px;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(37,211,102,0.38);
+            z-index: 200;
+            transition: transform 0.2s;
+        }
+
+        .whatsapp-float:hover { transform: scale(1.08); }
+
+        /* ── RESPONSIVE ──────────────────────────── */
+        @media (max-width: 767px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <!-- Botón flotante de WhatsApp -->
+<body>
+
+    <!-- WhatsApp flotante -->
     <a href="https://wa.me/56973979934" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Header -->
-  <header class="bg-azul-medio fixed w-full z-50 shadow-lg">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center">
-            <div class="h-10 w-10 rounded-full bg-acento flex items-center justify-center overflow-hidden">
-                <img src="Aconcagua.png" alt="Aconcagua Webs Logo" class="w-full h-full object-cover">
-            </div>
-            <h1 class="text-xl font-bold ml-3">Aconcagua Webs</h1>
-        </div>
-            
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="#inicio" class="nav-link">Inicio</a>
-                <a href="#beneficios" class="nav-link">Beneficios</a>
-                <a href="#clientes" class="nav-link">Clientes</a>
-                <a href="#proyectos" class="nav-link">Proyectos</a>
-                <a href="#contacto" class="nav-link">Contacto</a>
+    <!-- ── HEADER ─────────────────────────────────── -->
+    <header>
+        <div class="nav-inner">
+            <a href="#inicio" class="nav-logo">
+                <img src="Aconcagua.png" alt="Logo Aconcagua Webs">
+                Aconcagua Webs
+            </a>
+            <nav class="nav-links">
+                <a href="#proyectos">Proyectos</a>
+                <a href="#seo">SEO & AEO</a>
+                <a href="#beneficios">Servicios</a>
+                <a href="#contacto" class="nav-cta">Contactar</a>
             </nav>
-            
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="mobile-menu md:hidden flex-col bg-azul-intermedio px-4 pb-4 pt-2">
-            <a href="#inicio" class="py-2">Inicio</a>
-            <a href="#beneficios" class="py-2">Beneficios</a>
-            <a href="#clientes" class="py-2">Clientes</a>
-            <a href="#proyectos" class="py-2">Proyectos</a>
-            <a href="#contacto" class="py-2">Contacto</a>
-        </div>
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#proyectos">Proyectos</a>
+            <a href="#seo">SEO & AEO</a>
+            <a href="#beneficios">Servicios</a>
+            <a href="#contacto">Contactar</a>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="pt-32 pb-20 bg-gradient-to-br from-azul-oscuro to-azul-medio">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Aconcagua Webs: tu presencia digital <span class="text-acento">lista para crecer</span></h2>
-                <p class="text-xl text-texto-suave mb-8">Diseñamos sitios web profesionales, rápidos y adaptables para que tu empresa destaque en internet.</p>
-                <div class="flex flex-col sm:flex-row sm:justify-center sm:space-x-4 space-y-3 sm:space-y-0">
-                    <a href="#contacto" class="btn-acento px-6 py-3 rounded-lg font-semibold">Cotiza tu sitio</a>
-                    <a href="#proyectos" class="border border-acento text-acento px-6 py-3 rounded-lg font-semibold hover:bg-azul-intermedio transition">Ver trabajos</a>
-                </div>
+    <!-- ── HERO ──────────────────────────────────── -->
+    <section id="inicio">
+        <div class="container">
+            <div class="hero-badge">Diseño web · SEO · AEO</div>
+            <h1>Tu negocio en internet,<br><span class="accent">listo para crecer</span></h1>
+            <p>Sitios web rápidos, modernos y adaptables que convierten visitantes en clientes reales.</p>
+            <div class="hero-btns">
+                <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+                <a href="#contacto" class="btn-outline">Cotiza gratis</a>
             </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative floating">
-                    <div class="absolute -inset-6 bg-acento rounded-2xl rotate-3 opacity-20"></div>
-                    <div class="relative bg-azul-intermedio p-8 rounded-xl shadow-2xl">
-                        <div class="flex justify-center mb-6">
-                            <div class="flex space-x-2">
-                                <div class="h-4 w-4 rounded-full bg-red-500"></div>
-                                <div class="h-4 w-4 rounded-full bg-yellow-500"></div>
-                                <div class="h-4 w-4 rounded-full bg-green-500"></div>
+        </div>
+    </section>
+
+    <!-- ── PROYECTOS ──────────────────────────────── -->
+    <section id="proyectos" style="padding-top: 1.5rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Proyectos <span class="accent">Aconcagua Webs</span></h2>
+                <p>Alterna entre vista de escritorio y móvil en cada proyecto.</p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- Kuroneko -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="kuroneko" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="kuroneko" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="kuroneko-desktop" class="view-desktop show">
+                            <img src="kuroneko.png" alt="Kuroneko Tattoo — escritorio">
+                        </div>
+                        <div id="kuroneko-mobile" class="view-mobile">
+                            <img src="kuronekcelular.jpeg" alt="Kuroneko Tattoo — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Kuroneko Tattoo</h3>
+                        <p>Diseño responsive para estudio de tatuajes con portafolio y contacto rápido.</p>
+                        <a href="https://kuroneko.cl" target="_blank" class="card-link">
+                            kuroneko.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Relojería ZH -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="relojeria" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="relojeria" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="relojeria-desktop" class="view-desktop show">
+                            <img src="relojeriazh.png" alt="Relojería ZH — escritorio">
+                        </div>
+                        <div id="relojeria-mobile" class="view-mobile">
+                            <img src="relojeriazhcelular.jpeg" alt="Relojería ZH — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Relojería y Joyería ZH</h3>
+                        <p>Tienda y portafolio con diseño elegante para clientes en todos los dispositivos.</p>
+                        <a href="https://relojeriajoyeriazh.cl" target="_blank" class="card-link">
+                            relojeriajoyeriazh.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Floristería -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="floristeria" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="floristeria" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="floristeria-desktop" class="view-desktop show">
+                            <img src="floristeria.png" alt="Florería La Pampa — escritorio">
+                        </div>
+                        <div id="floristeria-mobile" class="view-mobile">
+                            <img src="floristeriacelular.jpeg" alt="Florería La Pampa — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Florería La Pampa</h3>
+                        <p>Sitio visualmente atractivo con acceso rápido a servicios y ventas en línea.</p>
+                        <a href="https://floristerialapampa.cl" target="_blank" class="card-link">
+                            floristerialapampa.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- La Golosita -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="golosita" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="golosita" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="golosita-desktop" class="view-desktop show">
+                            <img src="lagolosita.png" alt="La Golosita — escritorio">
+                        </div>
+                        <div id="golosita-mobile" class="view-mobile">
+                            <img src="lagolositacelular.jpeg" alt="La Golosita — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>La Golosita</h3>
+                        <p>E-commerce para dulcería con diseño alegre y fácil de usar en todo tipo de pantallas.</p>
+                        <a href="https://lagolosita.cl" target="_blank" class="card-link">
+                            lagolosita.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Andes Computación -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="andes" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="andes" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="andes-desktop" class="view-desktop show">
+                            <img src="andescomp.png" alt="Andes Computación — escritorio">
+                        </div>
+                        <div id="andes-mobile" class="view-mobile">
+                            <img src="andescompcelular.jpeg" alt="Andes Computación — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Andes Computación</h3>
+                        <p>Portal web para comercio tecnológico con énfasis en productos y soporte especializado.</p>
+                        <a href="https://andescomputacion.cl" target="_blank" class="card-link">
+                            andescomputacion.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Salón Amanas -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="amanas" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="amanas" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="amanas-desktop" class="view-desktop show">
+                            <img src="salonamanas.png" alt="Salón Amanas — escritorio">
+                        </div>
+                        <div id="amanas-mobile" class="view-mobile">
+                            <img src="salonamanascelular.jpeg" alt="Salón Amanas — móvil">
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Salón Amanas</h3>
+                        <p>Sitio de salón de belleza con foco en servicios, reservas y redes sociales.</p>
+                        <a href="https://salonamanas.cl" target="_blank" class="card-link">
+                            salonamanas.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Aconcagua Deportes (NUEVO)
+                     ─────────────────────────────────────────────────────────
+                     Para agregar las imágenes:
+                       · Vista PC:    guarda el archivo como  aconcaguadeportespc.png
+                       · Vista móvil: guarda el archivo como  aconcaguadeportescelular.jpeg
+                     Luego reemplaza el <div class="img-placeholder"> correspondiente
+                     por: <img src="NOMBRE_ARCHIVO" alt="descripción">
+                     ────────────────────────────────────────────────────────── -->
+                <article class="project-card">
+                    <div class="card-image-area">
+                        <div class="image-toggle">
+                            <button class="toggle-btn active" data-target="acdeportes" data-view="desktop">PC</button>
+                            <button class="toggle-btn" data-target="acdeportes" data-view="mobile">Móvil</button>
+                        </div>
+                        <div id="acdeportes-desktop" class="view-desktop show">
+                            <!-- reemplazar por: <img src="aconcaguadeportespc.png" alt="Aconcagua Deportes — escritorio"> -->
+                            <div class="img-placeholder">
+                                <i class="fas fa-desktop"></i>
+                                <span>aconcaguadeportespc.png</span>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg overflow-hidden shadow-inner">
-                            <div class="h-48 bg-gradient-to-br from-azul-oscuro to-acento flex items-center justify-center">
-                                <div class="text-center text-white p-4">
-                                    <i class="fas fa-store text-4xl mb-3"></i>
-                                    <h3 class="text-xl font-bold">Tu Negocio Online</h3>
-                                    <p class="text-sm">Diseño profesional y adaptable</p>
-                                </div>
+                        <div id="acdeportes-mobile" class="view-mobile">
+                            <!-- reemplazar por: <img src="aconcaguadeportescelular.jpeg" alt="Aconcagua Deportes — móvil"> -->
+                            <div class="img-placeholder" style="height:auto; padding:2.5rem 1rem;">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>aconcaguadeportescelular.jpeg</span>
                             </div>
                         </div>
                     </div>
+                    <div class="card-info">
+                        <h3>Aconcagua Deportes</h3>
+                        <p>Tienda deportiva con catálogo de productos y experiencia optimizada para móvil.</p>
+                        <a href="https://aconcaguadeportes.cl" target="_blank" class="card-link">
+                            aconcaguadeportes.cl <i class="fas fa-arrow-right" style="font-size:.7rem"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <div style="text-align:center; margin-top:2.25rem;">
+                <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.9rem;">¿Tu negocio no está aquí todavía?</p>
+                <a href="#contacto" class="btn-primary">Cotiza tu sitio web</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SEO & AEO ──────────────────────────────── -->
+    <section id="seo">
+        <div class="container">
+            <div class="section-header">
+                <h2>SEO & <span class="accent">AEO</span></h2>
+                <p>Posicionamiento para Google y para la nueva era de la inteligencia artificial.</p>
+            </div>
+            <div class="seo-grid">
+                <div class="seo-card">
+                    <div class="seo-card-icon"><i class="fas fa-search"></i></div>
+                    <h3>SEO — Posicionamiento en buscadores</h3>
+                    <p>Optimizamos tu sitio para que aparezca en los primeros resultados de Google cuando tus clientes buscan tus productos o servicios.</p>
+                    <ul>
+                        <li>Estructura y código optimizado para buscadores</li>
+                        <li>Palabras clave relevantes para tu negocio</li>
+                        <li>Velocidad de carga y experiencia de usuario</li>
+                        <li>Compatible con Google Search Console</li>
+                    </ul>
+                </div>
+                <div class="seo-card" style="border-color: rgba(59,130,246,0.22);">
+                    <div class="seo-card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AEO — Optimización para IA</h3>
+                    <p>AEO (Answer Engine Optimization) es la forma de aparecer en respuestas de ChatGPT, Google AI y asistentes inteligentes cuando alguien pregunta sobre tu rubro.</p>
+                    <ul>
+                        <li>Aparece en respuestas de ChatGPT y Google AI</li>
+                        <li>Contenido optimizado para búsqueda por voz</li>
+                        <li>Visibilidad en Perplexity y asistentes IA</li>
+                        <li>Datos estructurados y Schema.org</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="beneficios" class="py-16 bg-azul-medio">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4">¿Por qué necesitas una <span class="text-acento">página web</span>?</h2>
-            <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">En un mundo conectado, tu presencia online es tu carta de presentación las 24 horas del día, los 7 días de la semana.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Benefit 1 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-globe-americas text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Presencia 24/7</h3>
-                    <p class="text-texto-suave">Tu negocio está siempre disponible, incluso fuera del horario de atención. Los clientes pueden conocerte y contactarte en cualquier momento.</p>
-                </div>
-                
-                <!-- Benefit 2 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Adaptable a celulares</h3>
-                    <p class="text-texto-suave">Más del 70% de las búsquedas se hacen desde celulares. Tu web se verá perfecta en cualquier dispositivo.</p>
-                </div>
-                
-                <!-- Benefit 3 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Más clientes</h3>
-                    <p class="text-texto-suave">Atraes nuevos clientes que te buscan en Google. Una web profesional genera confianza y credibilidad.</p>
-                </div>
-                
-                <!-- Benefit 4 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-robot text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Preparada para el futuro</h3>
-                    <p class="text-texto-suave">Conozco AEO (Optimización para Motores de Respuesta), la nueva forma de aparecer en búsquedas con inteligencia artificial como ChatGPT y Google AI.</p>
-                </div>
-                
-                <!-- Benefit 5 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bullhorn text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Mejor imagen</h3>
-                    <p class="text-texto-suave">Destaca sobre tu competencia con un diseño moderno y profesional que transmite confianza a tus clientes.</p>
-                </div>
-                
-                <!-- Benefit 6 -->
-                <div class="card p-6 rounded-lg text-center">
-                    <div class="benefit-icon">
-                        <i class="fas fa-wallet text-white text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Costo efectivo</h3>
-                    <p class="text-texto-suave">Una inversión única que trabaja por ti todos los días, mucho más económica que la publicidad tradicional.</p>
-                </div>
+    <!-- ── BENEFICIOS ─────────────────────────────── -->
+    <section id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Por qué tener una <span class="accent">página web</span>?</h2>
+                <p>Tu presencia online es tu carta de presentación las 24 horas del día.</p>
             </div>
-            
-            <!-- AEO Explanation -->
-            <div class="mt-16 aeo-card">
-                <h3 class="text-2xl font-bold mb-4">AEO: Optimización para motores de respuesta</h3>
-                <p>AEO (Answer Engine Optimization) ayuda a que tu negocio aparezca dentro de respuestas de inteligencia artificial, asistentes conversacionales y resultados enriquecidos.</p>
-                <ul>
-                    <li>Posicionamos tu sitio para respuestas en ChatGPT, Google AI y Perplexity.</li>
-                    <li>Preparamos tu contenido para preguntas directas y búsqueda por voz.</li>
-                    <li>Mejoramos la visibilidad en asistentes que entregan recomendaciones instantáneas.</li>
-                </ul>
-                <p>Así no solo compites en Google, sino también en los nuevos espacios donde tus clientes están buscando hoy.</p>
-            </div>
-        </div>
-    </section>
-
-    
-    <!-- Clients Section -->
-    
-
-    <!-- Projects Section -->
-<section id="proyectos" class="py-16 bg-azul-medio">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-4">Proyectos <span class="text-acento">Aconcagua Webs</span></h2>
-        <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">Galería responsive de proyectos con imagen de escritorio y móvil para cada sitio.</p>
-        
-        <!-- Galería de proyectos: en móvil se muestra en una columna, en PC en una cuadrícula -->
-        <div class="project-gallery">
-            <!-- Proyecto Kuroneko -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <!-- Fuente para pantallas pequeñas -->
-                        <source media="(max-width: 768px)" srcset="kuronekcelular.jpeg">
-                        <!-- Imagen por defecto para escritorio -->
-                        <img src="kuroneko.png" alt="Proyecto Kuroneko Tattoo, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">Kuroneko Tattoo</h3>
-                    <p class="text-texto-suave mb-4">Diseño responsive para estudio de tatuajes, optimizado para mostrar portafolio y contacto rápido.</p>
-                    <a href="https://kuroneko.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-
-            <!-- Proyecto Relojería y Joyería ZH -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="relojeriazhcelular.jpeg">
-                        <img src="relojeriazh.png" alt="Proyecto Relojería y Joyería ZH, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">Relojería y Joyería ZH</h3>
-                    <p class="text-texto-suave mb-4">Tienda y portafolio con diseño elegante y navegación adaptada para clientes en dispositivos móviles.</p>
-                    <a href="https://relojeriajoyeriazh.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-
-            <!-- Proyecto Floristería La Pampa -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="floristeriacelular.jpeg">
-                        <img src="floristeria.png" alt="Proyecto Floristería La Pampa, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">Florería La Pampa</h3>
-                    <p class="text-texto-suave mb-4">Sitio visualmente atractivo para floristería, con acceso rápido a servicios y ventas en línea.</p>
-                    <a href="https://floristerialapampa.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-
-            <!-- Proyecto La Golosita -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="lagolositacelular.jpeg">
-                        <img src="lagolosita.png" alt="Proyecto La Golosita, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">La Golosita</h3>
-                    <p class="text-texto-suave mb-4">E-commerce para dulcería con un diseño alegre y fácil de usar en todo tipo de pantallas.</p>
-                    <a href="https://lagolosita.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-
-            <!-- Proyecto Andes Computación -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="andescompcelular.jpeg">
-                        <img src="andescomp.png" alt="Proyecto Andes Computación, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">Andes Computación</h3>
-                    <p class="text-texto-suave mb-4">Portal web para comercio tecnológico con énfasis en productos, servicios y soporte especializado.</p>
-                    <a href="https://andescomputacion.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-
-            <!-- Proyecto Salón Amanas -->
-            <article class="project-card">
-                <div class="project-image">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="salonamanascelular.jpeg">
-                        <img src="salonamanas.png" alt="Proyecto Salón Amanas, vista escritorio" loading="lazy">
-                    </picture>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3">Salón Amanas</h3>
-                    <p class="text-texto-suave mb-4">Sitio de salón de belleza con foco en servicios, reservas y presencia en redes sociales.</p>
-                    <a href="https://salonamanas.cl" target="_blank" class="text-acento hover:underline font-semibold">Visitar sitio →</a>
-                </div>
-            </article>
-        </div>
-        
-        <div class="text-center mt-12">
-            <p class="text-texto-suave mb-6">Tu proyecto puede ser el próximo sitio destacado.</p>
-            <a href="#contacto" class="btn-acento inline-block px-6 py-3 rounded-lg font-semibold">Pide tu presupuesto</a>
-        </div>
-    </div>
-</section>
-
-
-
-    <!-- Contact Section -->
-    <section id="contacto" class="py-16 bg-azul-intermedio">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4">Hablemos sobre tu <span class="text-acento">proyecto</span></h2>
-            <p class="text-texto-suave text-center max-w-2xl mx-auto mb-12">Contáctame directamente por WhatsApp, teléfono o email para crear la página web perfecta para tu negocio</p>
-            
-            <div class="max-w-4xl mx-auto bg-azul-medio rounded-xl shadow-lg overflow-hidden p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Contact Info -->
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-bold mb-6">Mis datos de contacto</h3>
-                        
-                        <div class="flex items-start">
-                            <div class="h-12 w-12 rounded-full bg-acento flex items-center justify-center text-white mr-4 mt-1">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <p class="text-texto-suave">Teléfono/WhatsApp</p>
-                                <p class="font-semibold text-lg">+56 9 7397 9934</p>
-                                <a href="https://wa.me/56973979934" target="_blank" class="text-acento text-sm hover:underline">Enviar mensaje por WhatsApp</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="h-12 w-12 rounded-full bg-acento flex items-center justify-center text-white mr-4 mt-1">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="text-texto-suave">Email</p>
-                                <p class="font-semibold text-lg">vicente.nieto.e@gmail.com</p>
-                                <a href="mailto:vicente.nieto.e@gmail.com" class="text-acento text-sm hover:underline">Enviar correo</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="h-12 w-12 rounded-full bg-acento flex items-center justify-center text-white mr-4 mt-1">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <p class="text-texto-suave">Ubicación</p>
-                                <p class="font-semibold text-lg">Chile</p>
-                                <p class="text-texto-suave text-sm">Trabajo de forma remota para clientes de cualquier lugar</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Why work with me -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-globe"></i></div>
                     <div>
-                        <h3 class="text-2xl font-bold mb-6">¿Por qué trabajar conmigo?</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Diseños modernos y atractivos que convierten visitantes en clientes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Sitios web que funcionan perfectamente en todos los dispositivos</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Soluciones digitales completas y estrategias online para tu negocio</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Administramos redes sociales como TikTok, Instagram, WhatsApp Business, Facebook y Meta Ads</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Conocimiento en AEO para aparecer en búsquedas con inteligencia artificial</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Asesoría personalizada y acompañamiento durante todo el proceso</span>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="h-6 w-6 rounded-full bg-acento flex items-center justify-center text-white mr-3 mt-1 flex-shrink-0">
-                                    <i class="fas fa-check text-xs"></i>
-                                </div>
-                                <span>Entrega rápida y soporte post-entrega</span>
-                            </li>
-                        </ul>
-                        
-                        <div class="mt-8 text-center">
-                            <a href="https://wa.me/56973979934" target="_blank" class="btn-acento inline-flex items-center px-6 py-3 rounded-lg font-semibold">
-                                <i class="fab fa-whatsapp mr-2"></i> Contactar por WhatsApp
-                            </a>
-                        </div>
+                        <h3>Presencia 24/7</h3>
+                        <p>Tu negocio disponible siempre, incluso fuera del horario de atención.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div>
+                        <h3>Adaptable a celulares</h3>
+                        <p>Más del 70% de búsquedas se hacen desde celular. Tu web se verá perfecta.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <h3>Más clientes</h3>
+                        <p>Atrae clientes que te buscan en Google. Una web profesional genera confianza.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <h3>Mejor imagen</h3>
+                        <p>Destaca sobre tu competencia con diseño moderno y profesional.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-wallet"></i></div>
+                    <div>
+                        <h3>Inversión inteligente</h3>
+                        <p>Trabaja por ti todos los días, mucho más económica que la publicidad tradicional.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-share-alt"></i></div>
+                    <div>
+                        <h3>Redes sociales</h3>
+                        <p>Administramos TikTok, Instagram, Facebook, WhatsApp Business y Meta Ads.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-azul-oscuro py-8">
-        <div class="container mx-auto px-4 text-center">
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://wa.me/56973979934" class="h-10 w-10 rounded-full bg-acento flex items-center justify-center hover:bg-acento-hover transition">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="mailto:vicente.nieto.e@gmail.com" class="h-10 w-10 rounded-full bg-acento flex items-center justify-center hover:bg-acento-hover transition">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+56973979934" class="h-10 w-10 rounded-full bg-acento flex items-center justify-center hover:bg-acento-hover transition">
-                    <i class="fas fa-phone"></i>
-                </a>
+    <!-- ── CONTACTO ────────────────────────────────── -->
+    <section id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hablemos sobre tu <span class="accent">proyecto</span></h2>
+                <p>Contáctame directamente por WhatsApp, teléfono o email.</p>
             </div>
-            <p class="mb-2">¿Necesitas una página web profesional para tu negocio?</p>
-            <p class="text-texto-suave">Contáctame hoy mismo y llevemos tu presencia online al siguiente nivel</p>
-            <p class="mt-4">&copy; 2026 Aconcagua Webs</p>
+            <div class="contact-grid">
+                <div class="contact-col">
+                    <h3>Mis datos</h3>
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="cm-label">Teléfono / WhatsApp</div>
+                            <div class="cm-value">+56 9 7397 9934</div>
+                            <a href="https://wa.me/56973979934" target="_blank" class="cm-action">Abrir WhatsApp →</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="cm-label">Email</div>
+                            <div class="cm-value">vicente.nieto.e@gmail.com</div>
+                            <a href="mailto:vicente.nieto.e@gmail.com" class="cm-action">Enviar correo →</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <div class="cm-label">Ubicación</div>
+                            <div class="cm-value">Chile · Trabajo remoto</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.25rem;">
+                        <a href="https://wa.me/56973979934" target="_blank" class="btn-primary">
+                            <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-col">
+                    <h3>¿Por qué trabajar conmigo?</h3>
+                    <div class="why-list">
+                        <div class="why-item"><div class="why-dot"></div><span>Diseños modernos que convierten visitantes en clientes</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>Sitios optimizados para todos los dispositivos</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>Soluciones digitales completas para tu negocio</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>Gestión de TikTok, Instagram, WhatsApp Business, Facebook y Meta Ads</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>SEO y AEO para aparecer en Google y en inteligencia artificial</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>Asesoría personalizada durante todo el proceso</span></div>
+                        <div class="why-item"><div class="why-dot"></div><span>Entrega rápida y soporte post-entrega</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────── -->
+    <footer>
+        <div class="footer-inner" style="max-width:1200px; margin:0 auto;">
+            <div class="footer-socials">
+                <a href="https://wa.me/56973979934" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:vicente.nieto.e@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+56973979934"><i class="fas fa-phone"></i></a>
+            </div>
+            <p>© 2026 Aconcagua Webs · Diseño web profesional en Chile</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.remove('active');
+        // Toggle PC / Móvil en cada card
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const target = this.dataset.target;
+                const view   = this.dataset.view;
+
+                // Actualizar botones del mismo grupo
+                this.closest('.image-toggle').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Mostrar la vista correcta
+                document.getElementById(`${target}-desktop`).classList.remove('show');
+                document.getElementById(`${target}-mobile`).classList.remove('show');
+                document.getElementById(`${target}-${view}`).classList.add('show');
             });
         });
-        
-        // Smooth scrolling for navigation links
+
+        // Menú móvil
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-nav').classList.toggle('open');
+        });
+
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-nav').classList.remove('open');
+            });
+        });
+
+        // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                const id = this.getAttribute('href');
+                if (id === '#') return;
+                const el = document.querySelector(id);
+                if (el) {
+                    e.preventDefault();
+                    window.scrollTo({ top: el.offsetTop - 68, behavior: 'smooth' });
                 }
             });
         });
